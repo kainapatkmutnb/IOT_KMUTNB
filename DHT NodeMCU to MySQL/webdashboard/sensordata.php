@@ -5,8 +5,6 @@ require 'config.php';
 //---------------------------------------------------------------------------
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $api_key = escape_data($_POST["api_key"]); 
-    // print_r($_POST);
-    // echo "<br>PROJECT_API_KEY:".PROJECT_API_KEY."<br>";
 
     if ($api_key == PROJECT_API_KEY){
         $temperature = escape_data($_POST["temperature"]);
