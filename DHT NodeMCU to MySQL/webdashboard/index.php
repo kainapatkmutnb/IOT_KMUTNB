@@ -3,7 +3,7 @@
 require 'config.php';
 
 $db;
-$sql = "SELECT * FROM temperature_db ORDER BY id DESC LIMIT 30";
+$sql = "SELECT * FROM temperature_db ORDER BY id ASC LIMIT 30";
 $result = $db->query($sql);
 if (!$result) {
     { echo "Error: " . $sql . "<br>" . $db->error; }
@@ -15,7 +15,7 @@ if (!$result) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Temperature And Humidity</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">

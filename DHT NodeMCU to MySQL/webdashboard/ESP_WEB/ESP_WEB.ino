@@ -9,8 +9,8 @@
 
 DHT dht(DHT_PIN, DHTTYPE);
 
-const char* ssid = "309_2.4G";
-const char* password = "3721J8917";
+const char* ssid = "B415";
+const char* password = "appletv415";
 const char* SERVER_NAME = "http://kainapatdb.atwebpages.com/sensordata.php";
 String PROJECT_API_KEY = "kainapatmysqldht";
 
@@ -33,7 +33,7 @@ void loop() {
     }
   } else {
     Serial.println("WiFi Disconnected");
-    connectToWiFi();  // Try reconnecting if disconnected
+    connectToWiFi(); 
   }
   delay(1000);
 }
@@ -46,7 +46,7 @@ void connectToWiFi() {
   WiFi.begin(ssid, password);
 
   int attempts = 0;
-  while (WiFi.status() != WL_CONNECTED && attempts < 20) {  // Retry for 20 attempts
+  while (WiFi.status() != WL_CONNECTED && attempts < 20) {  
     delay(500);
     Serial.print(".");
     attempts++;
