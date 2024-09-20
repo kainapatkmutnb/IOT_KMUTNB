@@ -3,7 +3,7 @@
 require 'config.php';
 
 $db;
-$sql = "SELECT * FROM temperature_db ORDER BY id ASC LIMIT 30";
+$sql = "SELECT * FROM temperature_db ORDER BY id DESC";
 $result = $db->query($sql);
 if (!$result) {
     { echo "Error: " . $sql . "<br>" . $db->error; }
@@ -181,6 +181,42 @@ if (!$result) {
     });
 
 </script>
+<script>
+    function loadTableData() {
+        $.ajax({
+            url: 'getdata.php', 
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                let tableBody = '';
+                response.forEach((row, index) => {
+                    tableBody += `
+                        <tr>
+                            <th scope="row">${index + 1}</th>
+                            <td>${row.temperature}</td>
+                            <td>${row.humidity}</td>
+                            <td>${new Date(row.create_date).toLocaleString()}</td>
+                        </tr>
+                    `;
+                });
+                $('tbody').html(tableBody); 
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown + ': ' + textStatus);
+            }
+        });
+    }
+
+    
+    setInterval(loadTableData, 5000);
+    
+    
+    $(document).ready(function() {
+        loadTableData();
+    });
+</script>
+
+
 <!-- --------------------------------------------------------------------- -->
 </body>
 </html>
